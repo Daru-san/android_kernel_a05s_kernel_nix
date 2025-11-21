@@ -54,6 +54,8 @@
                   oemBootImg
                   kernelImageName
                   ;
+
+                kernelSU.enable = false;
               };
               stock = {
                 inherit
