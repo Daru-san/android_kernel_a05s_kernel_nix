@@ -14,6 +14,11 @@
       perSystem =
         { pkgs, ... }:
         {
+          devShells.default = pkgs.mkShell {
+            buildInputs = [
+              pkgs.linuxPackages.kernel.configEnv
+            ];
+          };
           kernelsu = {
             default = {
               arch = "arm64";
