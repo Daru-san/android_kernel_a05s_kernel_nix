@@ -495,7 +495,7 @@ static struct sk_buff *create_monitor_event(struct hci_dev *hdev, int event)
 
 	return skb;
 }
-/*
+
 static struct sk_buff *create_monitor_ctrl_open(struct sock *sk)
 {
 	struct hci_mon_hdr *hdr;
@@ -591,7 +591,7 @@ static struct sk_buff *create_monitor_ctrl_close(struct sock *sk)
 
 	return skb;
 }
-*/
+
 static struct sk_buff *create_monitor_ctrl_command(struct sock *sk, u16 index,
 						   u16 opcode, u16 len,
 						   const void *buf)
