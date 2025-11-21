@@ -17,7 +17,7 @@
         {
           devShells.default = pkgs.mkShell {
             buildInputs = [
-              pkgs.linuxPackages.kernel.configEnv
+              # pkgs.linuxPackages.kernel.configEnv
             ];
           };
           kernelsu = {
