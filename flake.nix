@@ -24,7 +24,7 @@
             default = {
               arch = "arm64";
               anyKernelVariant = "kernelsu";
-              clangVersion = "latest";
+              clangVersion = "18";
 
               kernelSU.enable = false;
               susfs.enable = false;
