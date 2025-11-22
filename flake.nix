@@ -15,11 +15,6 @@
       perSystem =
         { pkgs, lib, ... }:
         {
-          devShells.default = pkgs.mkShell {
-            buildInputs = [
-              # pkgs.linuxPackages.kernel.configEnv
-            ];
-          };
           kernelsu =
             let
               arch = "arm64";
