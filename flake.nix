@@ -4,6 +4,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nix-kernelsu-builder.url = "github:xddxdd/nix-kernelsu-builder";
+    sufs4ksu = {
+      url = "gitlab:simonpunk/susfs4ksu/gki-android14-5.15";
+      flake = false;
+    };
   };
   outputs =
     { flake-parts, ... }@inputs:
@@ -13,7 +17,11 @@
       ];
       systems = [ "x86_64-linux" ];
       perSystem =
-        { pkgs, lib, ... }:
+        {
+          pkgs,
+          lib,
+          ...
+        }:
         {
           kernelsu =
             let
@@ -70,9 +78,11 @@
                     ;
 
                   kernelPatches = patches ++ [
-                    # Enabled PKM for sukisu-sufs
-                    # Only enabled when building kernelSU variant
                     ./kernelsu.patch
+                    (pkgs.fetchpatch {
+                      url = "https://raw.githubusercontent.com/WildKernels/kernel_patches/22a2d296b09c936ee11c7b9c2580b7275bf5b02a/69_hide_stuff.patch";
+                      hash = "sha256-aPIHwwBdZzWxdUPUnHJjUB/h8kNoYNZsOryFMi89iLQ=";
+                    })
                   ];
 
                   anyKernelVariant = "kernelsu";
@@ -82,7 +92,10 @@
                     variant = "sukisu-susfs";
                   };
 
-                  susfs.enable = lib.mkForce false;
+                  susfs = {
+                    enable = true;
+                    src = inputs.sufs4ksu;
+                  };
                 };
             };
         };
